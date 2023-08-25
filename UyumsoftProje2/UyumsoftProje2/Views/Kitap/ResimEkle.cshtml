@@ -1,0 +1,14 @@
+﻿
+@using UyumsoftProje2.Models
+
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("ResimEkle", "Kitap", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>resim: </p>
+    <input type="file" name="resim" />
+    <input type="submit" name="gönder" />
+}

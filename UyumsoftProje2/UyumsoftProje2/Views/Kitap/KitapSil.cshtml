@@ -1,0 +1,18 @@
+﻿
+
+@using UyumsoftProje2.Models
+@model KITAP
+
+@{
+    ViewBag.Title = "Kitap Sil";
+}
+
+<h1>Kitap Silme Sayfası</h1>
+
+<form action="/Kitap/KitapSil" method="post">
+    <label> @Model.kitapAdi kitabını silmek istiyor musunuz?</label>
+    <input type="hidden" name="kitapId" value="@Model.kitapId" />
+    <br />
+    <input type="submit" class="btn btn-danger" value="Evet" />
+    <a class="btn btn-info" href="/Kitap/Index">Hayır</a>
+</form>

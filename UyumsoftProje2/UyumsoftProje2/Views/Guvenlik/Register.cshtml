@@ -1,0 +1,118 @@
+﻿
+
+@{
+    ViewBag.Title = "Kayıt Ol";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/Contents/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/Contents/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Yeni Bir Hesap Oluştur!</h1>
+                            </div>
+
+                            @ViewBag.Mesaj
+                        <form class="row g-3 needs-validation" method="post" action="/Guvenlik/Register/" novalidate>
+
+
+                            <div class="col-12">
+                                <label for="yourName" class="form-label">İsim</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" name="ad" class="form-control" id="yourName" required>
+                                    <div class="invalid-feedback">Adınızı giriniz.</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="yourLastname" class="form-label">Soyisim</label>
+                                <input type="text" name="soyad" class="form-control" id="yourLastname" required>
+                                <div class="invalid-feedback">Soyadınızı Giriniz!</div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="yourUsername" class="form-label">Kullanıcı Adı</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" name="kullaniciAdi" class="form-control" id="yourUsername" required>
+                                    <div class="invalid-feedback">Kullanıcı adınızı giriniz.</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="yourMail" class="form-label">Mail</label>
+                                <input type="email" name="mail" class="form-control" id="yourMail" required>
+                                <div class="invalid-feedback">Mail Giriniz!</div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="yourPassword" class="form-label">Şifre</label>
+                                <input type="password" name="sifre" class="form-control" id="yourPassword" required>
+                                <div class="invalid-feedback">sifre Giriniz!</div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <button class="btn btn-primary btn-user btn-block" type="submit" >Kayıt Ol !</button>
+                            </div>
+
+                        </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="/Guvenlik/forgotPassword/">Şifreni mi unuttun ?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="/Guvenlik/Login/">Zaten bir hesabın mı var? Giriş Yap!</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Contents/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Contents/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Contents/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Contents/js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>

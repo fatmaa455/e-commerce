@@ -1,0 +1,89 @@
+﻿
+
+
+@using UyumsoftProje2.Models
+@model SIPARIS
+
+
+@{
+    ViewBag.Title = "Sipariş";
+}
+
+
+
+<div class="container">
+    <h2>Kitaplar</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+
+                <th>Sepet Id</th>
+                <th>Kitap Adı</th>
+                <th>Adet</th>
+                <th>Tutar</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (SEPET s in ViewBag.urunler as List<SEPET>)
+            {
+                <tr>
+                    <td>@s.sepetId</td>
+                    @foreach (KITAP k in ViewBag.kitap as List<KITAP>)
+                    {
+                        if (@s.kitapId == @k.kitapId)
+                        {
+                            <td>@k.kitapAdi</td>
+                        }
+                    }
+                    <td>@s.adet adet</td>
+                    <td>@s.tutar TL</td>
+                </tr>
+            }
+            <a href="#" data-ktgId="@Model.siparisId" class="btn btn-danger ktgVer">Sipariş Ver</a>
+
+        </tbody>
+    </table>
+</div>
+
+
+
+@section scripts{
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        $(".ktgVer").click(
+            function () {
+                //alert("Hello");
+                var sonuc = confirm("Sipariş verilsin mi?");
+                if (sonuc) {
+                    var kid = $(this).attr("data-ktgId");
+                    //alert(kid);
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "/Siparis/siparisVer/" + kid,
+                            success: function () {
+                                alert("Sipariş başarıyla verildi!")
+                                window.location.replace("/Kitap/Index");
+                            },
+                            error: function () {
+                                alert("error");
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Sipariş İptal Edildi");
+                }
+            }
+
+        );
+    </script>
+
+}
+
+

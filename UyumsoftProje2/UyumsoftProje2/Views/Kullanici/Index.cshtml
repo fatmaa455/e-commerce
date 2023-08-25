@@ -1,0 +1,55 @@
+﻿
+
+@using UyumsoftProje2.Models;
+@model List<UYE>
+
+
+@{
+    ViewBag.Title = "Kullanıcılar";
+}
+
+
+<a href="/Kullanici/KullaniciEkle" class="btn btn-info">Yeni Kullanıcı Ekle</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Kullanıcı Id</th>
+            <th>Kullanıcı Ad</th>
+            <th>Kullanıcı Soyad</th>
+            <th>KullanıcıAdı</th>
+            <th>Kullanıcı Mail</th>
+            <th>Kullanıcı Şifre</th>
+            <th>Kullanıcı Rol</th>
+            <th>Kullanıcıyı Sil</th>
+            <th>Kullanıcıyı Güncelle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UYE u in Model)
+        {
+        <tr>
+            <td>@u.uyeId</td>
+            <td>@u.ad</td>
+            <td>@u.soyad</td>
+            <td>@u.kullaniciAdi</td>
+            <td>@u.mail</td>
+            <td>@u.sifre</td>
+            @if (u.kullaniciRolü == "Y")
+            {
+                <td><p>Yönetici</p></td>
+            }
+            @if (u.kullaniciRolü == "S")
+            {
+                <td><p>Kullanıcı (Satıcı)</p></td>
+            }
+            @if (u.kullaniciRolü == "A")
+            {
+                <td><p>Kullanıcı (Alıcı)</p></td>
+            }
+            <td><a class="btn btn-danger" href="/Kullanici/KullaniciSil/@u.uyeId">Sil</a></td>
+            <td><a class="btn btn-danger" href="/Kullanici/KullaniciGuncelle/@u.uyeId">Güncelleme</a></td>
+        </tr>
+        }
+    </tbody>
+</table>

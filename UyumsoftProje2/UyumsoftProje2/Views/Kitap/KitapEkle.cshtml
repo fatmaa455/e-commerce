@@ -1,0 +1,72 @@
+﻿
+@using UyumsoftProje2.Models;
+@model KITAP
+
+@{
+    ViewBag.Title = "Kitap Ekle";
+}
+
+<h2>Kitap Ekleme Sayfası</h2>
+
+<form action="/Kitap/KitapEkle" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <input type="hidden" class="form-control" value="@Model.kitapId" id="kitapId" name="kitapId">
+    </div>
+
+    <div class="form-group">
+        <label for="kitapAdi">Kitap Adı: </label>
+        <input type="text" class="form-control" value="@Model.kitapAdi" id="kitapAdi" name="kitapAdi">
+    </div>
+
+    <div class="form-group">
+        <label for="sayfaSayisi">Sayfa Sayısı: </label>
+        <input type="text" class="form-control" value="@Model.sayfaSayisi" id="sayfaSayisi" name="sayfaSayisi">
+    </div>
+
+    <div class="form-group">
+        <label for="fiyat">Fiyat: </label>
+        <input type="text" class="form-control" value="@Model.fiyat" id="fiyat" name="fiyat">
+    </div>
+
+    <div class="form-group">
+        <label>Kategoriler</label>
+        <select class="form-select-list" id="kategoriId" name="kategoriId">
+            @foreach (KATEGORI k in ViewBag.kategori as List<KATEGORI>)
+            {
+                <option value="@k.kategoriId">@k.kategoriAd</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Yayınevleri</label>
+        <select class="form-select-list" id="yayıneviId" name="yayıneviId">
+            @foreach (YAYINEVI y in ViewBag.yayınevi as List<YAYINEVI>)
+            {
+                <option value="@y.yayıneviId">@y.yayıneviAd</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Yazarlar</label>
+        <select class="form-select-list" id="yazarId" name="yazarId">
+            @foreach (YAZAR y in ViewBag.yazar as List<YAZAR>)
+            {
+                <option value="@y.yazarId">@y.yazarAd</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="resim">Resim: </label>
+        <input type="file" class="form-control" value="@Model.resim" id="resim" name="resim">
+    </div>
+
+    <div class="form-group form-check">
+    </div>
+    <button type="submit" class="btn btn-primary">Kitap Ekle</button>
+
+</form>
+
+

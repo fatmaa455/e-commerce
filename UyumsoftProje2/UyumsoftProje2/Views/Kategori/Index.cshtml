@@ -1,0 +1,32 @@
+﻿@using UyumsoftProje2.Models;
+@model List<KATEGORI>
+
+
+@{
+    ViewBag.Title = "Kategoriler";
+}
+
+@if (User.IsInRole("Y") || User.IsInRole("S"))
+{
+    <a href="/Kategori/KategoriEkle" class="btn btn-info">Yeni Kategori Ekle</a>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Kategori Id</th>
+            <th>Kategori Ad</th>
+            <th>Detay</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (KATEGORI k in Model)
+        {
+            <tr>
+                <td>@k.kategoriId</td>
+                <td>@k.kategoriAd</td>
+                <td><a href="/Kategori/KategoriDetay/@k.kategoriId" class="btn btn-warning">Kitaplar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

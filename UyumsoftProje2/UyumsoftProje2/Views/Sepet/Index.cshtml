@@ -1,0 +1,66 @@
+﻿
+
+
+@using UyumsoftProje2.Models
+@model List<SEPET>
+
+
+@{
+    ViewBag.Title = "Sepet Bilgisi";
+}
+
+
+
+<div class="jumbotron">
+    <h1>Sepetim</h1>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Sepet id
+        </th>
+        <th>
+            Kitap Adı
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.sepetId
+            </td>
+             @foreach (KITAP k in ViewBag.kitap as List<KITAP>)
+                {
+                    if (@k.kitapId == @item.kitapId)
+                    {
+                        <td>@k.kitapAdi</td>
+                    }
+                }
+
+            <td>
+                <a class="btn btn-default" href="/Sepet/Sil/@item.sepetId">Sil</a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <th>
+            Toplam
+        </th>
+
+        <th>
+            @Model.Sum(a => a.adet) ADET
+        </th>
+
+        <th>
+            @Model.Sum(a => a.tutar) TL
+        </th>
+
+    </tr>
+    <tr>
+        <td><a class="btn btn-default" href="/Kitap/Index">Alışverişe Devam Et</a></td>
+        <td colspan="3" style="text-align:right;"><a class="btn btn-default" href="/Siparis/Index">Alışverişi Tamamla</a></td>
+    </tr>
+</table>
+

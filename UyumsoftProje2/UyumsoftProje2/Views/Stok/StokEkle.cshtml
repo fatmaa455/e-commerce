@@ -1,0 +1,36 @@
+﻿
+@using UyumsoftProje2.Models
+@model STOK
+@{
+    ViewBag.Title = "Stok Ekle";
+}
+
+<h2>Stok Ekleme Sayfası</h2>
+
+<form action="/Stok/StokEkle" method="post">
+    <div class="form-group">
+        <input type="hidden" class="form-control" value="@Model.stokId" id="stokId" name="stokId">
+    </div>
+
+    <div class="form-group">
+        <label for="kalan">Kalan Miktar: </label>
+        <input type="text" class="form-control" value="@Model.kalan" id="kalan" name="kalan">
+    </div>
+
+    <div class="form-group">
+        <label>Kitap Ad</label>
+        <select class="form-select-list" id="kitapId" name="kitapId">
+            @foreach (KITAP k in ViewBag.kitap as List<KITAP>)
+            {
+                <option value="@k.kitapId">@k.kitapAdi</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group form-check">
+    </div>
+    <button type="submit" class="btn btn-primary">Stok Ekle</button>
+
+</form>
+
+

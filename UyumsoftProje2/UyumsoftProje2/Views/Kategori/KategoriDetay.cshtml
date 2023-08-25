@@ -1,0 +1,68 @@
+﻿
+@using UyumsoftProje2.Models
+@model List<KITAP>
+
+
+@{
+    ViewBag.Title = "Kategori Detay";
+    Layout = "~/Views/Layout.cshtml";
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th>Resim</th>
+            <th>Kitap Id</th>
+            <th>Kitap Adı</th>
+            <th>Sayfa Sayısı</th>
+            <th>Fiyat</th>
+            <th>Kategori Adı</th>
+            <th>Yayınevi Adı</th>
+            <th>Yazar Adı</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (KITAP k in Model)
+        {
+        <tr>
+
+            <td>
+                <img src="@k.resim" width="100" heigt="100" />
+            </td>
+
+            <td>@k.kitapId</td>
+            <td>@k.kitapAdi</td>
+            <td>@k.sayfaSayisi</td>
+            <td>@k.fiyat</td>
+
+            @foreach (KATEGORI kategori in ViewBag.kategori as List<KATEGORI>)
+            {
+                if (@k.kategoriId == @kategori.kategoriId)
+                {
+                    <td>@kategori.kategoriAd</td>
+                }
+            }
+
+            @foreach (YAYINEVI yayinevi in ViewBag.yayınevi as List<YAYINEVI>)
+            {
+                if (@yayinevi.yayıneviId == @k.yayıneviId)
+                {
+                    <td>@yayinevi.yayıneviAd</td>
+                }
+            }
+            @foreach (YAZAR yazar in ViewBag.yazar as List<YAZAR>)
+            {
+                if (@yazar.yazarId == @k.yazarId)
+                {
+                    <td>@yazar.yazarAd</td>
+                }
+            }
+
+        </tr>
+        }
+    </tbody>
+</table>
+

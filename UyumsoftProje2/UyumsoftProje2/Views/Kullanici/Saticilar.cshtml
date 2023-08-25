@@ -1,0 +1,50 @@
+﻿
+@using UyumsoftProje2.Models;
+@model List<SATICI>
+
+
+@{
+    ViewBag.Title = "Satıcılar";
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Satıcı Id</th>
+            <th>Satıcı Adı</th>
+            <th>Kitap Adı</th>
+            <th>Kullanıcı Rol</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SATICI s in Model)
+        {
+            <tr>
+                <td>@s.saticiId</td>
+
+                @foreach(UYE u in ViewBag.uyeler as List<UYE>)
+                {
+                    if(@s.uyeId == @u.uyeId)
+                    {
+                        <td>@u.ad  @u.soyad</td>
+                    }
+                }
+
+                @foreach(KITAP k in ViewBag.kitaplar as List<KITAP>)
+                {
+                    if(@s.kitapId == @k.kitapId)
+                    {
+                        <td>@k.kitapAdi</td>
+                    }
+                }
+
+                <td>Kullanıcı (Satıcı)</td>
+            </tr>
+        }
+
+
+
+    </tbody>
+        
+</table>

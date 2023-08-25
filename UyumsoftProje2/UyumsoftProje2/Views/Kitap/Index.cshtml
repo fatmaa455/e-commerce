@@ -1,0 +1,185 @@
+﻿
+@using UyumsoftProje2.Models
+@model List<KITAP>
+
+
+@{
+    ViewBag.Title = "Kitaplar";
+}
+
+
+@section head{
+    <style>
+        .hata {
+            color: red;
+        }
+    </style>
+}
+
+@section body{
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">KITAP SIL</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="mesaj"></p>
+                    <p class="hata"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary kitapSil">Evet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@if (User.IsInRole("Y") || User.IsInRole("S"))
+{
+    <a href="/Kitap/KitapEkle" class="btn btn-info">Yeni Kitap Ekle</a>
+}
+
+<div class="container">
+    <h2>Kitaplar</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+
+                <th>Resim</th>
+
+                <th>Kitap Id</th>
+                <th>Kitap Adı</th>
+                <th>Sayfa Sayısı</th>
+                <th>Fiyat</th>
+                <th>Kategori Adı</th>
+                <th>Yayınevi Adı</th>
+                <th>Yazar Adı</th>
+
+
+
+
+                @if (User.IsInRole("Y") || User.IsInRole("S"))
+                {
+                    <th> Kitap Sil </th>
+                    <th> Kitap Güncelle </th>
+                }
+
+                <th>Sepet</th>
+
+                <th>Adet</th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (KITAP k in Model)
+            {
+            <tr>
+
+                <td>
+                    <img src="@k.resim" width="100" heigt="100" />
+                </td>
+
+                <td>@k.kitapId</td>
+                <td>@k.kitapAdi</td>
+                <td>@k.sayfaSayisi</td>
+                <td>@k.fiyat</td>
+
+                @foreach (KATEGORI kategori in ViewBag.kategori as List<KATEGORI>)
+                {
+                    if (@k.kategoriId == @kategori.kategoriId)
+                    {
+                        <td>@kategori.kategoriAd</td>
+                    }
+                }
+
+                @foreach (YAYINEVI yayinevi in ViewBag.yayınevi as List<YAYINEVI>)
+                {
+                    if (@yayinevi.yayıneviId == @k.yayıneviId)
+                    {
+                        <td>@yayinevi.yayıneviAd</td>
+                    }
+                }
+                @foreach (YAZAR yazar in ViewBag.yazar as List<YAZAR>)
+                {
+                    if (@yazar.yazarId == @k.yazarId)
+                    {
+                        <td>@yazar.yazarAd</td>
+                    }
+                }
+
+
+
+                @if (User.IsInRole("Y") || User.IsInRole("S"))
+                {
+                    <td><a href="#" data-toggle="modal" data-target="#exampleModal" data-ktpId="@k.kitapId" data-ktpAdi="@k.kitapAdi" class="btn btn-danger ktpSil">Sil</a></td>
+                    <td><a class="btn btn-danger" href="/Kitap/KitapGuncelle/@k.kitapId">Güncelleme</a></td>
+                }
+
+                <td>
+                    <form action="/Sepet/SepeteEkle">
+                        <input type="hidden" name="id" id="id" value="@k.kitapId" style="width:50px;" />
+                        <input type="number" name="adet" id="adet" value="1" style="width:50px;" /> <input type="submit" id="gonder" value="Sepete Ekle" />
+                    </form>
+                </td>
+
+                @foreach (STOK stok in ViewBag.stok as List<STOK>)
+                {
+                    if (@stok.kitapId == @k.kitapId)
+                    {
+                        <td>@stok.kalan</td>
+                    }
+                }
+
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(".ktpSil").click(
+            function () {
+                $(".modal-body>p.hata").html = "";
+                var kitap = $(this).attr("data-ktpAdi");
+                $(".modal-body>p.mesaj").html(kitap + " silinsin mi?");
+                var kitapID = $(this).attr("data-ktpId");
+                $(".kitapSil").data("kitapId", kitapID);
+            }
+        );
+
+        $(".kitapSil").click(
+            function () {
+                var id = $(this).data("kitapId");
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Kitap/KitapSil/" + id,
+                        success: function (param) {
+                            if (param == 1) {
+                                window.location.replace("/Kitap/Index");
+                            }
+                            else {
+                                $(".modal-body>p.hata").html("Hata !!!");
+                            }
+                        }
+                    }
+                );
+            }
+        );
+    </script>
+
+}

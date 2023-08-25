@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KITAPLIKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ALICI">
+    <Key>
+      <PropertyRef Name="aliciId" />
+    </Key>
+    <Property Name="aliciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uyeId" Type="int" />
+    <Property Name="siparisId" Type="int" />
+  </EntityType>
+  <EntityType Name="KATEGORI">
+    <Key>
+      <PropertyRef Name="kategoriId" />
+    </Key>
+    <Property Name="kategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kategoriAd" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KITAP">
+    <Key>
+      <PropertyRef Name="kitapId" />
+    </Key>
+    <Property Name="kitapId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kitapAdi" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="sayfaSayisi" Type="int" Nullable="false" />
+    <Property Name="fiyat" Type="int" Nullable="false" />
+    <Property Name="kategoriId" Type="int" />
+    <Property Name="yayıneviId" Type="int" />
+    <Property Name="yazarId" Type="int" />
+  </EntityType>
+  <EntityType Name="SATICI">
+    <Key>
+      <PropertyRef Name="saticiId" />
+    </Key>
+    <Property Name="saticiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uyeId" Type="int" />
+    <Property Name="kitapId" Type="int" />
+  </EntityType>
+  <EntityType Name="SEPET">
+    <Key>
+      <PropertyRef Name="sepetId" />
+    </Key>
+    <Property Name="sepetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adet" Type="int" Nullable="false" />
+    <Property Name="tutar" Type="int" Nullable="false" />
+    <Property Name="kitapId" Type="int" />
+    <Property Name="siparisId" Type="int" />
+  </EntityType>
+  <EntityType Name="SIPARIS">
+    <Key>
+      <PropertyRef Name="siparisId" />
+    </Key>
+    <Property Name="siparisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="musteriId" Type="int" />
+  </EntityType>
+  <EntityType Name="STOK">
+    <Key>
+      <PropertyRef Name="stokId" />
+    </Key>
+    <Property Name="stokId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kalan" Type="int" Nullable="false" />
+    <Property Name="kitapId" Type="int" />
+  </EntityType>
+  <EntityType Name="UYE">
+    <Key>
+      <PropertyRef Name="uyeId" />
+    </Key>
+    <Property Name="uyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="soyad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="kullaniciAdi" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="mail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="sifre" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YAYINEVI">
+    <Key>
+      <PropertyRef Name="yayıneviId" />
+    </Key>
+    <Property Name="yayıneviId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="yayıneviAd" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YAZAR">
+    <Key>
+      <PropertyRef Name="yazarId" />
+    </Key>
+    <Property Name="yazarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="yazarAd" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__ALICI__siparisId__6E01572D">
+    <End Role="SIPARIS" Type="Self.SIPARIS" Multiplicity="0..1" />
+    <End Role="ALICI" Type="Self.ALICI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIPARIS">
+        <PropertyRef Name="siparisId" />
+      </Principal>
+      <Dependent Role="ALICI">
+        <PropertyRef Name="siparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ALICI__uyeId__3E52440B">
+    <End Role="UYE" Type="Self.UYE" Multiplicity="0..1" />
+    <End Role="ALICI" Type="Self.ALICI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UYE">
+        <PropertyRef Name="uyeId" />
+      </Principal>
+      <Dependent Role="ALICI">
+        <PropertyRef Name="uyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KITAP__kategoriI__5EBF139D">
+    <End Role="KATEGORI" Type="Self.KATEGORI" Multiplicity="0..1" />
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KATEGORI">
+        <PropertyRef Name="kategoriId" />
+      </Principal>
+      <Dependent Role="KITAP">
+        <PropertyRef Name="kategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KITAP__yayıneviI__59FA5E80">
+    <End Role="YAYINEVI" Type="Self.YAYINEVI" Multiplicity="0..1" />
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YAYINEVI">
+        <PropertyRef Name="yayıneviId" />
+      </Principal>
+      <Dependent Role="KITAP">
+        <PropertyRef Name="yayıneviId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KITAP__yazarId__5BE2A6F2">
+    <End Role="YAZAR" Type="Self.YAZAR" Multiplicity="0..1" />
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YAZAR">
+        <PropertyRef Name="yazarId" />
+      </Principal>
+      <Dependent Role="KITAP">
+        <PropertyRef Name="yazarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SATICI__kitapId__6EF57B66">
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="0..1" />
+    <End Role="SATICI" Type="Self.SATICI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KITAP">
+        <PropertyRef Name="kitapId" />
+      </Principal>
+      <Dependent Role="SATICI">
+        <PropertyRef Name="kitapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SATICI__uyeId__3B75D760">
+    <End Role="UYE" Type="Self.UYE" Multiplicity="0..1" />
+    <End Role="SATICI" Type="Self.SATICI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UYE">
+        <PropertyRef Name="uyeId" />
+      </Principal>
+      <Dependent Role="SATICI">
+        <PropertyRef Name="uyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SEPET__kitapId__5DCAEF64">
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="0..1" />
+    <End Role="SEPET" Type="Self.SEPET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KITAP">
+        <PropertyRef Name="kitapId" />
+      </Principal>
+      <Dependent Role="SEPET">
+        <PropertyRef Name="kitapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SEPET__kitapId__60A75C0F">
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="0..1" />
+    <End Role="SEPET" Type="Self.SEPET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KITAP">
+        <PropertyRef Name="kitapId" />
+      </Principal>
+      <Dependent Role="SEPET">
+        <PropertyRef Name="kitapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SEPET__siparisId__619B8048">
+    <End Role="SIPARIS" Type="Self.SIPARIS" Multiplicity="0..1" />
+    <End Role="SEPET" Type="Self.SEPET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIPARIS">
+        <PropertyRef Name="siparisId" />
+      </Principal>
+      <Dependent Role="SEPET">
+        <PropertyRef Name="siparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SEPET__siparisId__628FA481">
+    <End Role="SIPARIS" Type="Self.SIPARIS" Multiplicity="0..1" />
+    <End Role="SEPET" Type="Self.SEPET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIPARIS">
+        <PropertyRef Name="siparisId" />
+      </Principal>
+      <Dependent Role="SEPET">
+        <PropertyRef Name="siparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STOK__kitapId__02FC7413">
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="0..1" />
+    <End Role="STOK" Type="Self.STOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KITAP">
+        <PropertyRef Name="kitapId" />
+      </Principal>
+      <Dependent Role="STOK">
+        <PropertyRef Name="kitapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KITAPLIKModelStoreContainer">
+    <EntitySet Name="ALICI" EntityType="Self.ALICI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KATEGORI" EntityType="Self.KATEGORI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KITAP" EntityType="Self.KITAP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SATICI" EntityType="Self.SATICI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SEPET" EntityType="Self.SEPET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SIPARIS" EntityType="Self.SIPARIS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STOK" EntityType="Self.STOK" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UYE" EntityType="Self.UYE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YAYINEVI" EntityType="Self.YAYINEVI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YAZAR" EntityType="Self.YAZAR" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ALICI__siparisId__6E01572D" Association="Self.FK__ALICI__siparisId__6E01572D">
+      <End Role="SIPARIS" EntitySet="SIPARIS" />
+      <End Role="ALICI" EntitySet="ALICI" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ALICI__uyeId__3E52440B" Association="Self.FK__ALICI__uyeId__3E52440B">
+      <End Role="UYE" EntitySet="UYE" />
+      <End Role="ALICI" EntitySet="ALICI" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KITAP__kategoriI__5EBF139D" Association="Self.FK__KITAP__kategoriI__5EBF139D">
+      <End Role="KATEGORI" EntitySet="KATEGORI" />
+      <End Role="KITAP" EntitySet="KITAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KITAP__yayıneviI__59FA5E80" Association="Self.FK__KITAP__yayıneviI__59FA5E80">
+      <End Role="YAYINEVI" EntitySet="YAYINEVI" />
+      <End Role="KITAP" EntitySet="KITAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KITAP__yazarId__5BE2A6F2" Association="Self.FK__KITAP__yazarId__5BE2A6F2">
+      <End Role="YAZAR" EntitySet="YAZAR" />
+      <End Role="KITAP" EntitySet="KITAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SATICI__kitapId__6EF57B66" Association="Self.FK__SATICI__kitapId__6EF57B66">
+      <End Role="KITAP" EntitySet="KITAP" />
+      <End Role="SATICI" EntitySet="SATICI" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SATICI__uyeId__3B75D760" Association="Self.FK__SATICI__uyeId__3B75D760">
+      <End Role="UYE" EntitySet="UYE" />
+      <End Role="SATICI" EntitySet="SATICI" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SEPET__kitapId__5DCAEF64" Association="Self.FK__SEPET__kitapId__5DCAEF64">
+      <End Role="KITAP" EntitySet="KITAP" />
+      <End Role="SEPET" EntitySet="SEPET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SEPET__kitapId__60A75C0F" Association="Self.FK__SEPET__kitapId__60A75C0F">
+      <End Role="KITAP" EntitySet="KITAP" />
+      <End Role="SEPET" EntitySet="SEPET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SEPET__siparisId__619B8048" Association="Self.FK__SEPET__siparisId__619B8048">
+      <End Role="SIPARIS" EntitySet="SIPARIS" />
+      <End Role="SEPET" EntitySet="SEPET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SEPET__siparisId__628FA481" Association="Self.FK__SEPET__siparisId__628FA481">
+      <End Role="SIPARIS" EntitySet="SIPARIS" />
+      <End Role="SEPET" EntitySet="SEPET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STOK__kitapId__02FC7413" Association="Self.FK__STOK__kitapId__02FC7413">
+      <End Role="KITAP" EntitySet="KITAP" />
+      <End Role="STOK" EntitySet="STOK" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

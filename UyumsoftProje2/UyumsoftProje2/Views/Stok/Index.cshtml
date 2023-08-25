@@ -1,0 +1,40 @@
+﻿
+@using UyumsoftProje2.Models
+@model List<STOK>
+
+
+@{
+    ViewBag.Title = "Stok Bilgisi";
+}
+
+@if (User.IsInRole("Y") || User.IsInRole("S"))
+{
+    <a href="/Stok/StokEkle" class="btn btn-info">Stok Ekle</a>
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Stok Id</th>
+            <th>Kitap Adı</th>
+            <th>Adet</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (STOK s in Model)
+        {
+        <tr>
+            <td>@s.stokId</td>
+            @foreach (KITAP k in ViewBag.kitap as List<KITAP>)
+            {
+                if (@k.kitapId == s.kitapId)
+                {
+                    <td>@k.kitapAdi</td>
+                }
+            }
+            <td>@s.kalan</td>
+        </tr>
+        }
+    </tbody>
+</table>

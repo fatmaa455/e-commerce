@@ -1,0 +1,17 @@
+﻿
+@using UyumsoftProje2.Models
+@model UYE
+
+@{
+    ViewBag.Title = "Kullanıcı Sil";
+}
+
+<h1>Kitap Silme Sayfası</h1>
+
+<form action="/Kullanici/KullaniciSil" method="post">
+    <label> @Model.ad isimli @Model.kullaniciAdi kullanıcı adlı üyeyi silmek istiyor musunuz?</label>
+    <input type="hidden" name="uyeId" value="@Model.uyeId" />
+    <br />
+    <input type="submit" class="btn btn-danger" value="Evet" />
+    <a class="btn btn-info" href="/Kullanici/Index">Hayır</a>
+</form>

@@ -1,0 +1,25 @@
+﻿
+@using UyumsoftProje2.Models;
+@model KATEGORI
+
+@{
+    ViewBag.Title = "Kategori Ekle";
+}
+
+<h2>Ürün Ekleme Sayfası</h2>
+
+<form action="/Kategori/KategoriEkle" method="post">
+    <div class="form-group">
+        <input type="hidden" class="form-control" value="@Model.kategoriId" id="kategoriId" name="kategoriId">
+    </div>
+
+    <div class="form-group">
+        <label for="kategoriAd">Kategori Adı: </label>
+        <input type="text" class="form-control" value="@Model.kategoriAd" id="kategoriAd" name="kategoriAd">
+    </div>
+
+    <div class="form-group form-check">
+    </div>
+    <button type="submit" class="btn btn-primary">Kategori Ekle</button>
+
+</form>

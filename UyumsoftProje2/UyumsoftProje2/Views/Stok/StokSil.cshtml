@@ -1,0 +1,19 @@
+﻿
+
+
+@using UyumsoftProje2.Models
+@model STOK
+
+@{
+    ViewBag.Title = "Stok Sil";
+}
+
+<h1>Kitap Silme Sayfası</h1>
+
+<form action="/Stok/StokSil" method="post">
+    <label> @Model.stokId id yi silmek istiyor musunuz?</label>
+    <input type="hidden" name="stokId" value="@Model.stokId" />
+    <br />
+    <input type="submit" class="btn btn-danger" value="Evet" />
+    <a class="btn btn-info" href="/Stok/Index">Hayır</a>
+</form>

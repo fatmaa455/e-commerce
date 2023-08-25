@@ -1,0 +1,32 @@
+﻿
+@using UyumsoftProje2.Models;
+@model List<UYE>
+
+@{
+    ViewBag.Title = "Müşteriler";
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Müşteri Id</th>
+            <th>Müşteri Adı</th>
+            <th>Kullanıcı Rol</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UYE u in Model)
+        {
+            <tr>
+                <td>@u.uyeId</td>
+                <td>@u.ad  @u.soyad</td>
+                <td>Kullanıcı (Alıcı)</td>
+            </tr>
+        }
+
+
+
+    </tbody>
+
+</table>

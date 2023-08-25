@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KITAPLIKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ALICI">
+    <Key>
+      <PropertyRef Name="aliciId" />
+    </Key>
+    <Property Name="aliciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uyeId" Type="Int32" />
+    <Property Name="siparisId" Type="Int32" />
+    <NavigationProperty Name="SIPARIS" Relationship="Self.FK__ALICI__siparisId__6E01572D" FromRole="ALICI" ToRole="SIPARIS" />
+    <NavigationProperty Name="UYE" Relationship="Self.FK__ALICI__uyeId__3E52440B" FromRole="ALICI" ToRole="UYE" />
+  </EntityType>
+  <EntityType Name="KATEGORI">
+    <Key>
+      <PropertyRef Name="kategoriId" />
+    </Key>
+    <Property Name="kategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kategoriAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="KITAP" Relationship="Self.FK__KITAP__kategoriI__5EBF139D" FromRole="KATEGORI" ToRole="KITAP" />
+  </EntityType>
+  <EntityType Name="KITAP">
+    <Key>
+      <PropertyRef Name="kitapId" />
+    </Key>
+    <Property Name="kitapId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kitapAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sayfaSayisi" Type="Int32" Nullable="false" />
+    <Property Name="fiyat" Type="Int32" Nullable="false" />
+    <Property Name="kategoriId" Type="Int32" />
+    <Property Name="yayıneviId" Type="Int32" />
+    <Property Name="yazarId" Type="Int32" />
+    <Property Name="resim" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="KATEGORI" Relationship="Self.FK__KITAP__kategoriI__5EBF139D" FromRole="KITAP" ToRole="KATEGORI" />
+    <NavigationProperty Name="YAYINEVI" Relationship="Self.FK__KITAP__yayıneviI__59FA5E80" FromRole="KITAP" ToRole="YAYINEVI" />
+    <NavigationProperty Name="YAZAR" Relationship="Self.FK__KITAP__yazarId__5BE2A6F2" FromRole="KITAP" ToRole="YAZAR" />
+    <NavigationProperty Name="SATICI" Relationship="Self.FK__SATICI__kitapId__6EF57B66" FromRole="KITAP" ToRole="SATICI" />
+    <NavigationProperty Name="SEPET" Relationship="Self.FK__SEPET__kitapId__5DCAEF64" FromRole="KITAP" ToRole="SEPET" />
+    <NavigationProperty Name="SEPET1" Relationship="Self.FK__SEPET__kitapId__60A75C0F" FromRole="KITAP" ToRole="SEPET" />
+    <NavigationProperty Name="STOK" Relationship="Self.FK__STOK__kitapId__02FC7413" FromRole="KITAP" ToRole="STOK" />
+    <Property Name="durum" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SATICI">
+    <Key>
+      <PropertyRef Name="saticiId" />
+    </Key>
+    <Property Name="saticiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uyeId" Type="Int32" />
+    <Property Name="kitapId" Type="Int32" />
+    <NavigationProperty Name="KITAP" Relationship="Self.FK__SATICI__kitapId__6EF57B66" FromRole="SATICI" ToRole="KITAP" />
+    <NavigationProperty Name="UYE" Relationship="Self.FK__SATICI__uyeId__3B75D760" FromRole="SATICI" ToRole="UYE" />
+  </EntityType>
+  <EntityType Name="SEPET">
+    <Key>
+      <PropertyRef Name="sepetId" />
+    </Key>
+    <Property Name="sepetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adet" Type="Int32" Nullable="false" />
+    <Property Name="tutar" Type="Int32" Nullable="false" />
+    <Property Name="kitapId" Type="Int32" />
+    <Property Name="siparisId" Type="Int32" />
+    <NavigationProperty Name="KITAP" Relationship="Self.FK__SEPET__kitapId__5DCAEF64" FromRole="SEPET" ToRole="KITAP" />
+    <NavigationProperty Name="KITAP1" Relationship="Self.FK__SEPET__kitapId__60A75C0F" FromRole="SEPET" ToRole="KITAP" />
+    <NavigationProperty Name="SIPARIS" Relationship="Self.FK__SEPET__siparisId__619B8048" FromRole="SEPET" ToRole="SIPARIS" />
+    <NavigationProperty Name="SIPARIS1" Relationship="Self.FK__SEPET__siparisId__628FA481" FromRole="SEPET" ToRole="SIPARIS" />
+    <Property Name="kullaniciId" Type="Int32" />
+    <NavigationProperty Name="UYE" Relationship="KITAPLIKModel.FK__SEPET__kullanici__65F62111" FromRole="SEPET" ToRole="UYE" />
+  </EntityType>
+  <EntityType Name="SIPARIS">
+    <Key>
+      <PropertyRef Name="siparisId" />
+    </Key>
+    <Property Name="siparisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musteriId" Type="Int32" />
+    <NavigationProperty Name="ALICI" Relationship="Self.FK__ALICI__siparisId__6E01572D" FromRole="SIPARIS" ToRole="ALICI" />
+    <NavigationProperty Name="SEPET" Relationship="Self.FK__SEPET__siparisId__619B8048" FromRole="SIPARIS" ToRole="SEPET" />
+    <NavigationProperty Name="SEPET1" Relationship="Self.FK__SEPET__siparisId__628FA481" FromRole="SIPARIS" ToRole="SEPET" />
+  </EntityType>
+  <EntityType Name="STOK">
+    <Key>
+      <PropertyRef Name="stokId" />
+    </Key>
+    <Property Name="stokId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kalan" Type="Int32" Nullable="false" />
+    <Property Name="kitapId" Type="Int32" />
+    <NavigationProperty Name="KITAP" Relationship="Self.FK__STOK__kitapId__02FC7413" FromRole="STOK" ToRole="KITAP" />
+  </EntityType>
+  <EntityType Name="UYE">
+    <Key>
+      <PropertyRef Name="uyeId" />
+    </Key>
+    <Property Name="uyeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="kullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ALICI" Relationship="Self.FK__ALICI__uyeId__3E52440B" FromRole="UYE" ToRole="ALICI" />
+    <NavigationProperty Name="SATICI" Relationship="Self.FK__SATICI__uyeId__3B75D760" FromRole="UYE" ToRole="SATICI" />
+    <Property Name="kullaniciRolü" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SEPET" Relationship="KITAPLIKModel.FK__SEPET__kullanici__65F62111" FromRole="UYE" ToRole="SEPET" />
+  </EntityType>
+  <EntityType Name="YAYINEVI">
+    <Key>
+      <PropertyRef Name="yayıneviId" />
+    </Key>
+    <Property Name="yayıneviId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="yayıneviAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="KITAP" Relationship="Self.FK__KITAP__yayıneviI__59FA5E80" FromRole="YAYINEVI" ToRole="KITAP" />
+  </EntityType>
+  <EntityType Name="YAZAR">
+    <Key>
+      <PropertyRef Name="yazarId" />
+    </Key>
+    <Property Name="yazarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="yazarAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="KITAP" Relationship="Self.FK__KITAP__yazarId__5BE2A6F2" FromRole="YAZAR" ToRole="KITAP" />
+  </EntityType>
+  <Association Name="FK__ALICI__siparisId__6E01572D">
+    <End Role="SIPARIS" Type="Self.SIPARIS" Multiplicity="0..1" />
+    <End Role="ALICI" Type="Self.ALICI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIPARIS">
+        <PropertyRef Name="siparisId" />
+      </Principal>
+      <Dependent Role="ALICI">
+        <PropertyRef Name="siparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ALICI__uyeId__3E52440B">
+    <End Role="UYE" Type="Self.UYE" Multiplicity="0..1" />
+    <End Role="ALICI" Type="Self.ALICI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UYE">
+        <PropertyRef Name="uyeId" />
+      </Principal>
+      <Dependent Role="ALICI">
+        <PropertyRef Name="uyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KITAP__kategoriI__5EBF139D">
+    <End Role="KATEGORI" Type="Self.KATEGORI" Multiplicity="0..1" />
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KATEGORI">
+        <PropertyRef Name="kategoriId" />
+      </Principal>
+      <Dependent Role="KITAP">
+        <PropertyRef Name="kategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KITAP__yayıneviI__59FA5E80">
+    <End Role="YAYINEVI" Type="Self.YAYINEVI" Multiplicity="0..1" />
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YAYINEVI">
+        <PropertyRef Name="yayıneviId" />
+      </Principal>
+      <Dependent Role="KITAP">
+        <PropertyRef Name="yayıneviId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KITAP__yazarId__5BE2A6F2">
+    <End Role="YAZAR" Type="Self.YAZAR" Multiplicity="0..1" />
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YAZAR">
+        <PropertyRef Name="yazarId" />
+      </Principal>
+      <Dependent Role="KITAP">
+        <PropertyRef Name="yazarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SATICI__kitapId__6EF57B66">
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="0..1" />
+    <End Role="SATICI" Type="Self.SATICI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KITAP">
+        <PropertyRef Name="kitapId" />
+      </Principal>
+      <Dependent Role="SATICI">
+        <PropertyRef Name="kitapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SEPET__kitapId__5DCAEF64">
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="0..1" />
+    <End Role="SEPET" Type="Self.SEPET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KITAP">
+        <PropertyRef Name="kitapId" />
+      </Principal>
+      <Dependent Role="SEPET">
+        <PropertyRef Name="kitapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SEPET__kitapId__60A75C0F">
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="0..1" />
+    <End Role="SEPET" Type="Self.SEPET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KITAP">
+        <PropertyRef Name="kitapId" />
+      </Principal>
+      <Dependent Role="SEPET">
+        <PropertyRef Name="kitapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STOK__kitapId__02FC7413">
+    <End Role="KITAP" Type="Self.KITAP" Multiplicity="0..1" />
+    <End Role="STOK" Type="Self.STOK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KITAP">
+        <PropertyRef Name="kitapId" />
+      </Principal>
+      <Dependent Role="STOK">
+        <PropertyRef Name="kitapId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SATICI__uyeId__3B75D760">
+    <End Role="UYE" Type="Self.UYE" Multiplicity="0..1" />
+    <End Role="SATICI" Type="Self.SATICI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UYE">
+        <PropertyRef Name="uyeId" />
+      </Principal>
+      <Dependent Role="SATICI">
+        <PropertyRef Name="uyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SEPET__siparisId__619B8048">
+    <End Role="SIPARIS" Type="Self.SIPARIS" Multiplicity="0..1" />
+    <End Role="SEPET" Type="Self.SEPET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIPARIS">
+        <PropertyRef Name="siparisId" />
+      </Principal>
+      <Dependent Role="SEPET">
+        <PropertyRef Name="siparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SEPET__siparisId__628FA481">
+    <End Role="SIPARIS" Type="Self.SIPARIS" Multiplicity="0..1" />
+    <End Role="SEPET" Type="Self.SEPET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIPARIS">
+        <PropertyRef Name="siparisId" />
+      </Principal>
+      <Dependent Role="SEPET">
+        <PropertyRef Name="siparisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ALICI" EntityType="Self.ALICI" />
+    <EntitySet Name="KATEGORI" EntityType="Self.KATEGORI" />
+    <EntitySet Name="KITAP" EntityType="Self.KITAP" />
+    <EntitySet Name="SATICI" EntityType="Self.SATICI" />
+    <EntitySet Name="SEPET" EntityType="Self.SEPET" />
+    <EntitySet Name="SIPARIS" EntityType="Self.SIPARIS" />
+    <EntitySet Name="STOK" EntityType="Self.STOK" />
+    <EntitySet Name="UYE" EntityType="Self.UYE" />
+    <EntitySet Name="YAYINEVI" EntityType="Self.YAYINEVI" />
+    <EntitySet Name="YAZAR" EntityType="Self.YAZAR" />
+    <AssociationSet Name="FK__ALICI__siparisId__6E01572D" Association="Self.FK__ALICI__siparisId__6E01572D">
+      <End Role="SIPARIS" EntitySet="SIPARIS" />
+      <End Role="ALICI" EntitySet="ALICI" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ALICI__uyeId__3E52440B" Association="Self.FK__ALICI__uyeId__3E52440B">
+      <End Role="UYE" EntitySet="UYE" />
+      <End Role="ALICI" EntitySet="ALICI" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KITAP__kategoriI__5EBF139D" Association="Self.FK__KITAP__kategoriI__5EBF139D">
+      <End Role="KATEGORI" EntitySet="KATEGORI" />
+      <End Role="KITAP" EntitySet="KITAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KITAP__yayıneviI__59FA5E80" Association="Self.FK__KITAP__yayıneviI__59FA5E80">
+      <End Role="YAYINEVI" EntitySet="YAYINEVI" />
+      <End Role="KITAP" EntitySet="KITAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KITAP__yazarId__5BE2A6F2" Association="Self.FK__KITAP__yazarId__5BE2A6F2">
+      <End Role="YAZAR" EntitySet="YAZAR" />
+      <End Role="KITAP" EntitySet="KITAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SATICI__kitapId__6EF57B66" Association="Self.FK__SATICI__kitapId__6EF57B66">
+      <End Role="KITAP" EntitySet="KITAP" />
+      <End Role="SATICI" EntitySet="SATICI" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SEPET__kitapId__5DCAEF64" Association="Self.FK__SEPET__kitapId__5DCAEF64">
+      <End Role="KITAP" EntitySet="KITAP" />
+      <End Role="SEPET" EntitySet="SEPET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SEPET__kitapId__60A75C0F" Association="Self.FK__SEPET__kitapId__60A75C0F">
+      <End Role="KITAP" EntitySet="KITAP" />
+      <End Role="SEPET" EntitySet="SEPET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STOK__kitapId__02FC7413" Association="Self.FK__STOK__kitapId__02FC7413">
+      <End Role="KITAP" EntitySet="KITAP" />
+      <End Role="STOK" EntitySet="STOK" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SATICI__uyeId__3B75D760" Association="Self.FK__SATICI__uyeId__3B75D760">
+      <End Role="UYE" EntitySet="UYE" />
+      <End Role="SATICI" EntitySet="SATICI" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SEPET__siparisId__619B8048" Association="Self.FK__SEPET__siparisId__619B8048">
+      <End Role="SIPARIS" EntitySet="SIPARIS" />
+      <End Role="SEPET" EntitySet="SEPET" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SEPET__siparisId__628FA481" Association="Self.FK__SEPET__siparisId__628FA481">
+      <End Role="SIPARIS" EntitySet="SIPARIS" />
+      <End Role="SEPET" EntitySet="SEPET" />
+    </AssociationSet>
+    <FunctionImport Name="raporla" ReturnType="Collection(KITAPLIKModel.raporla_Result)" />
+    <FunctionImport Name="S_RAPORLA2" ReturnType="Collection(KITAPLIKModel.S_RAPORLA2_Result)" />
+    <FunctionImport Name="SP_RAPORLA" ReturnType="Collection(KITAPLIKModel.SP_RAPORLA_Result)" />
+    <FunctionImport Name="SP_RAPORLA2" ReturnType="Collection(KITAPLIKModel.SP_RAPORLA2_Result)" />
+    <FunctionImport Name="SP_RAPORLA3" ReturnType="Collection(KITAPLIKModel.SP_RAPORLA3_Result)" />
+    <FunctionImport Name="SP_RAPORLA4" ReturnType="Collection(KITAPLIKModel.SP_RAPORLA4_Result)" />
+    <EntitySet Name="GOSTER" EntityType="KITAPLIKModel.GOSTER" />
+    <FunctionImport Name="SP_GOSTER" ReturnType="Collection(KITAPLIKModel.SP_GOSTER_Result)" />
+    <AssociationSet Name="FK__SEPET__kullanici__65F62111" Association="KITAPLIKModel.FK__SEPET__kullanici__65F62111">
+      <End Role="UYE" EntitySet="UYE" />
+      <End Role="SEPET" EntitySet="SEPET" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="raporla_Result">
+    <Property Type="Int32" Name="kitapId" Nullable="false" />
+    <Property Type="String" Name="kitapAdi" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="sayfaSayisi" Nullable="false" />
+    <Property Type="Int32" Name="fiyat" Nullable="false" />
+    <Property Type="String" Name="kategoriAd" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yayıneviAd" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yazarAd" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="S_RAPORLA2_Result">
+    <Property Type="Int32" Name="kitapId" Nullable="false" />
+    <Property Type="String" Name="kitapAdi" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="sayfaSayisi" Nullable="false" />
+    <Property Type="Int32" Name="fiyat" Nullable="false" />
+    <Property Type="String" Name="kategoriAd" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yayıneviAd" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_RAPORLA_Result">
+    <Property Type="Int32" Name="kitapId" Nullable="false" />
+    <Property Type="String" Name="kitapAdi" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="sayfaSayisi" Nullable="false" />
+    <Property Type="Int32" Name="fiyat" Nullable="false" />
+    <Property Type="String" Name="kategoriAd" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yayıneviAd" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yazarAd" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_RAPORLA2_Result">
+    <Property Type="Int32" Name="kitapId" Nullable="false" />
+    <Property Type="String" Name="kitapAdi" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="sayfaSayisi" Nullable="false" />
+    <Property Type="Int32" Name="fiyat" Nullable="false" />
+    <Property Type="String" Name="kategoriAd" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yayıneviAd" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_RAPORLA3_Result">
+    <Property Type="Int32" Name="kitapId" Nullable="false" />
+    <Property Type="String" Name="kitapAdi" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="sayfaSayisi" Nullable="false" />
+    <Property Type="Int32" Name="fiyat" Nullable="false" />
+    <Property Type="String" Name="kategoriAd" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yayıneviAd" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_RAPORLA4_Result">
+    <Property Type="Int32" Name="kitapId" Nullable="false" />
+    <Property Type="String" Name="kitapAdi" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="sayfaSayisi" Nullable="false" />
+    <Property Type="Int32" Name="fiyat" Nullable="false" />
+    <Property Type="String" Name="kategoriAd" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yayıneviAd" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="GOSTER">
+    <Key>
+      <PropertyRef Name="kitapId" />
+      <PropertyRef Name="kitapAdi" />
+      <PropertyRef Name="sayfaSayisi" />
+      <PropertyRef Name="fiyat" />
+      <PropertyRef Name="kategoriAd" />
+      <PropertyRef Name="yayıneviAd" />
+    </Key>
+    <Property Name="kitapId" Type="Int32" Nullable="false" />
+    <Property Name="kitapAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sayfaSayisi" Type="Int32" Nullable="false" />
+    <Property Name="fiyat" Type="Int32" Nullable="false" />
+    <Property Name="kategoriAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="yayıneviAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="SP_GOSTER_Result">
+    <Property Type="Int32" Name="kitapId" Nullable="false" />
+    <Property Type="String" Name="kitapAdi" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="sayfaSayisi" Nullable="false" />
+    <Property Type="Int32" Name="fiyat" Nullable="false" />
+    <Property Type="String" Name="kategoriAd" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="yayıneviAd" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <Association Name="FK__SEPET__kullanici__65F62111">
+    <End Type="KITAPLIKModel.UYE" Role="UYE" Multiplicity="0..1" />
+    <End Type="KITAPLIKModel.SEPET" Role="SEPET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UYE">
+        <PropertyRef Name="uyeId" />
+      </Principal>
+      <Dependent Role="SEPET">
+        <PropertyRef Name="kullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

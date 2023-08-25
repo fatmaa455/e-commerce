@@ -1,0 +1,25 @@
+﻿
+@using UyumsoftProje2.Models;
+@model YAYINEVI
+
+@{
+    ViewBag.Title = "Yayınevi Ekle";
+}
+
+<h2>Yayınevi Ekleme Sayfası</h2>
+
+<form action="/Yayinevi/YayineviEkle" method="post">
+    <div class="form-group">
+        <input type="hidden" class="form-control" value="@Model.yayıneviId" id="yayıneviId" name="yayıneviId">
+    </div>
+
+    <div class="form-group">
+        <label for="yayıneviAd">Yayınevi Adı: </label>
+        <input type="text" class="form-control" value="@Model.yayıneviAd" id="yayıneviAd" name="yayıneviAd">
+    </div>
+
+    <div class="form-group form-check">
+    </div>
+    <button type="submit" class="btn btn-primary">Yayınevi Ekle</button>
+
+</form>

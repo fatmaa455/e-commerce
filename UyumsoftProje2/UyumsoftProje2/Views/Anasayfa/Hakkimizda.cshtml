@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "Hakkımızda";
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@@media screen and (max-width: 100px) {
+  .column {
+    width: 50%;
+    display: block;
+  }
+}
+    </style>
+</head>
+<body>
+
+    <div class="about-section">
+        <h1>Hakkımızda</h1>
+        <p>
+            Türkiye’nin en köklü kitap firmalarının başında gelen “Kitap Sever” 2002 yılından bu yana alanında lider olmayı sürdürüyor.
+            Kökenleri 1907 yılına dayanan Kitap Sever internet üzerinden kitap alış satış fırsatları sunuyor.
+            Sektördeki pek çok firmanın öncüsü konumunda olan Kitap Sever, dünyaca ünlü kitapları müşterilerine web sitesi aracılığıyla güvenli şekilde ulaştırmayı amaçlıyor.
+            Senelerdir ikinci el kitapların vazgeçilmez adresi olan Kitap Sever web adresinde geniş ürün yelpazesinden seçiminizi yapabilir, 
+            web sitemizi ziyaret ederek ürünlerimiz hakkında bilgi sahibi olabilirsiniz.
+        </p>
+        <p>
+            Kitap Sever, Türkiye'deki kitap satıcılarını internet üzerinden alış-veriş yapmak isteyen kişilerle güvenli bir şekilde buluşturmak ve 
+            aralarında gerçekleşecek ticarete aracılık etmek amacıyla hizmet vermektedir. 
+            Bu amaç çerçevesinde Güvenli Ticaret Döngüsü sistemi oluşturulmuş ve böylece Kitap Sever'de alış-verişin en güvenli şekilde gerçekleştirilmesi amaçlanmıştır.
+            Kitap Sever aracılığıyla kitap satıcıları, ürünlerini internet ortamında binlerce müşteriye en hızlı ve kolay şekilde satıma sunma avantajını yakalarken, 
+            kitap almak isteyenler de bu çok satıcılı ortamda almak istediği kitapları en uygun fiyata bulma şansını elde ederler.
+        </p>
+    </div>
+
+
+    <h2 style="text-align:center">Our Team</h2>
+
+
+        <div class="column">
+            <div class="card">
+                <img src="~/Contents/img/undraw_profile_2.svg" alt="Mike" style="width:100%">
+                <div class="container">
+                    <h2>Mustafa Yazıcı</h2>
+                    <p class="title">Art Director</p>
+                    <p>Kitap Sever'in kurucu ortağı ve art director'ı olarak görev almaktadır</p>
+                    <p>mustafa@example.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="column">
+            <div class="card">
+                <img src="~/Contents/img/undraw_profile_1.svg" alt="Jane" style="width:100%">
+                <div class="container">
+                    <h2>Fatma Yazıcı</h2>
+                    <p class="title">CEO & Founder</p>
+                    <p>Kitap Sever'in kurucu ve yöneticisi olarak görev almaktadır</p>
+                    <p>fatma@example.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="~/Contents/img/undraw_profile_3.svg" alt="John" style="width:100%">
+                <div class="container">
+                    <h2>Sena Yazıcı</h2>
+                    <p class="title">Designer</p>
+                    <p>Kitap Sever'in kurucu ortağı ve designer'ı olarak görev almaktadır</p>
+                    <p>sena@example.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>

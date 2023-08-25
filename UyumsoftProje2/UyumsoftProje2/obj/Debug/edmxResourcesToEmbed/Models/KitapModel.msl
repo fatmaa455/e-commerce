@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KITAPLIKModelStoreContainer" CdmEntityContainer="KITAPLIKEntities">
+    <EntitySetMapping Name="ALICI">
+      <EntityTypeMapping TypeName="KITAPLIKModel.ALICI">
+        <MappingFragment StoreEntitySet="ALICI">
+          <ScalarProperty Name="aliciId" ColumnName="aliciId" />
+          <ScalarProperty Name="uyeId" ColumnName="uyeId" />
+          <ScalarProperty Name="siparisId" ColumnName="siparisId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KATEGORI">
+      <EntityTypeMapping TypeName="KITAPLIKModel.KATEGORI">
+        <MappingFragment StoreEntitySet="KATEGORI">
+          <ScalarProperty Name="kategoriId" ColumnName="kategoriId" />
+          <ScalarProperty Name="kategoriAd" ColumnName="kategoriAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KITAP">
+      <EntityTypeMapping TypeName="KITAPLIKModel.KITAP">
+        <MappingFragment StoreEntitySet="KITAP">
+          <ScalarProperty Name="kitapId" ColumnName="kitapId" />
+          <ScalarProperty Name="kitapAdi" ColumnName="kitapAdi" />
+          <ScalarProperty Name="sayfaSayisi" ColumnName="sayfaSayisi" />
+          <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+          <ScalarProperty Name="kategoriId" ColumnName="kategoriId" />
+          <ScalarProperty Name="yayıneviId" ColumnName="yayıneviId" />
+          <ScalarProperty Name="yazarId" ColumnName="yazarId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SATICI">
+      <EntityTypeMapping TypeName="KITAPLIKModel.SATICI">
+        <MappingFragment StoreEntitySet="SATICI">
+          <ScalarProperty Name="saticiId" ColumnName="saticiId" />
+          <ScalarProperty Name="uyeId" ColumnName="uyeId" />
+          <ScalarProperty Name="kitapId" ColumnName="kitapId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SEPET">
+      <EntityTypeMapping TypeName="KITAPLIKModel.SEPET">
+        <MappingFragment StoreEntitySet="SEPET">
+          <ScalarProperty Name="sepetId" ColumnName="sepetId" />
+          <ScalarProperty Name="adet" ColumnName="adet" />
+          <ScalarProperty Name="tutar" ColumnName="tutar" />
+          <ScalarProperty Name="kitapId" ColumnName="kitapId" />
+          <ScalarProperty Name="siparisId" ColumnName="siparisId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIPARIS">
+      <EntityTypeMapping TypeName="KITAPLIKModel.SIPARIS">
+        <MappingFragment StoreEntitySet="SIPARIS">
+          <ScalarProperty Name="siparisId" ColumnName="siparisId" />
+          <ScalarProperty Name="musteriId" ColumnName="musteriId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STOK">
+      <EntityTypeMapping TypeName="KITAPLIKModel.STOK">
+        <MappingFragment StoreEntitySet="STOK">
+          <ScalarProperty Name="kitapId" ColumnName="kitapId" />
+          <ScalarProperty Name="stokId" ColumnName="stokId" />
+          <ScalarProperty Name="kalan" ColumnName="kalan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UYE">
+      <EntityTypeMapping TypeName="KITAPLIKModel.UYE">
+        <MappingFragment StoreEntitySet="UYE">
+          <ScalarProperty Name="uyeId" ColumnName="uyeId" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YAYINEVI">
+      <EntityTypeMapping TypeName="KITAPLIKModel.YAYINEVI">
+        <MappingFragment StoreEntitySet="YAYINEVI">
+          <ScalarProperty Name="yayıneviId" ColumnName="yayıneviId" />
+          <ScalarProperty Name="yayıneviAd" ColumnName="yayıneviAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YAZAR">
+      <EntityTypeMapping TypeName="KITAPLIKModel.YAZAR">
+        <MappingFragment StoreEntitySet="YAZAR">
+          <ScalarProperty Name="yazarId" ColumnName="yazarId" />
+          <ScalarProperty Name="yazarAd" ColumnName="yazarAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

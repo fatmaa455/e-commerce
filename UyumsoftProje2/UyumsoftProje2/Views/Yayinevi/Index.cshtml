@@ -1,0 +1,33 @@
+﻿
+
+@using UyumsoftProje2.Models;
+@model List<YAYINEVI>
+
+
+@{
+    ViewBag.Title = "Yayınevleri";
+}
+
+
+@if (User.IsInRole("Y") || User.IsInRole("S"))
+{
+    <a href="/Yayinevi/YayineviEkle" class="btn btn-info">Yeni Yayınevi Ekle</a>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Yayınevi Id</th>
+            <th>Yayınevi Ad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (YAYINEVI y in Model)
+        {
+            <tr>
+                <td>@y.yayıneviId</td>
+                <td>@y.yayıneviAd</td>
+            </tr>
+        }
+    </tbody>
+</table>
